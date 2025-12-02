@@ -36,21 +36,21 @@ from collections import deque
 # =====================
 
 # Motor direction
-LEFT_MOTOR_DIRECTION = -1
-RIGHT_MOTOR_DIRECTION = -1
+LEFT_MOTOR_DIRECTION = 1
+RIGHT_MOTOR_DIRECTION = 1
 
 # ODrive serial numbers
 LEFT_ODRIVE_SERIAL = "325735623133"
 RIGHT_ODRIVE_SERIAL = "306F388B3533"
 
 # Motor settings (from human_follower.py)
-MAX_VELOCITY = 4.0
+MAX_VELOCITY = 2.0
 MIN_VELOCITY = 0.3
 TURN_GAIN = 2.0
 SPEED_GAIN = 4.0
 
 # Distance calibration
-TARGET_BBOX_HEIGHT_RATIO = 0.7
+TARGET_BBOX_HEIGHT_RATIO = 0.8
 DISTANCE_DEADBAND = 0.05
 TOO_CLOSE_RATIO = 0.6
 CENTER_DEADBAND = 0.08
@@ -192,13 +192,13 @@ class VisionMotorLogger:
             
         # Differential drive
         turn_diff = steering_error * TURN_GAIN
-        left_vel = forward_speed + turn_diff
-        right_vel = forward_speed - turn_diff
+        left_vel = forward_speed - turn_diff
+        right_vel = forward_speed + turn_diff
         
         # Spin in place if needed
         if abs(forward_speed) < 0.1 and abs(turn_diff) > 0.1:
-            left_vel = turn_diff * 0.8
-            right_vel = -turn_diff * 0.8
+            left_vel = -turn_diff * 0.8
+            right_vel = turn_diff * 0.8
             
         return left_vel, right_vel, steering_error, distance_error
         

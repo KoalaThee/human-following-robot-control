@@ -24,11 +24,11 @@ import numpy as np
 # MOTOR DIRECTION - Change sign to reverse
 # ===========================================
 # Set to -1 to reverse motor direction, 1 for normal
-LEFT_MOTOR_DIRECTION = -1   # Reverse left motor
-RIGHT_MOTOR_DIRECTION = -1  # Reverse right motor
+LEFT_MOTOR_DIRECTION = 1   # Reverse left motor
+RIGHT_MOTOR_DIRECTION = 1  # Reverse right motor
 
 # Motor settings
-MAX_VELOCITY = 4.0      # Maximum wheel velocity (rev/sec)
+MAX_VELOCITY = 2.0      # Maximum wheel velocity (rev/sec)
 MIN_VELOCITY = 0.3      # Minimum velocity to overcome static friction
 TURN_GAIN = 2.0         # Steering sensitivity (higher = more aggressive turns)
 SPEED_GAIN = 4.0        # Forward/backward speed gain
@@ -274,14 +274,14 @@ class HumanFollower:
         turn_diff = steering_error * TURN_GAIN
         
         # If person is on right (positive error), we need to turn right
-        # Turn right = left wheel faster, right wheel slower
-        left_vel = forward_speed + turn_diff
-        right_vel = forward_speed - turn_diff
+        # Turn right = right wheel faster, left wheel slower
+        left_vel = forward_speed - turn_diff
+        right_vel = forward_speed + turn_diff
         
         # Allow spinning in place if person is to the side but at correct distance
         if abs(forward_speed) < 0.1 and abs(turn_diff) > 0.1:
-            left_vel = turn_diff * 0.8
-            right_vel = -turn_diff * 0.8
+            left_vel = -turn_diff * 0.8
+            right_vel = turn_diff * 0.8
             
         return left_vel, right_vel
         

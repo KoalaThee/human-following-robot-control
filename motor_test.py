@@ -31,14 +31,14 @@ odrv1.axis0.controller.config.input_mode = 2
 # -------------------------
 
 print("Spinning motor slowly...")
-odrv0.axis0.controller.input_vel = 3
-odrv1.axis0.controller.input_vel = 3 # rev/sec (very slow)
+odrv0.axis0.controller.input_vel = 1
+odrv1.axis0.controller.input_vel = 1 # rev/sec (very slow)
 time.sleep(5)
 odrv0.axis0.controller.input_vel = 1
 odrv1.axis0.controller.input_vel = 1
 time.sleep(5)   
-odrv0.axis0.controller.input_vel = 2
-odrv1.axis0.controller.input_vel = 2
+odrv0.axis0.controller.input_vel = 1
+odrv1.axis0.controller.input_vel = 1
 time.sleep(5)                        # run for 5 seconds
 odrv0.axis0.controller.input_vel = 0 
 odrv1.axis0.controller.input_vel = 0 # stop motor
