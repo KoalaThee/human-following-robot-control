@@ -11,3 +11,7 @@ torchvision>=0.15.0
 # Motor Control
 odrive
 
+# Calibration & Analysis
+scipy>=1.7.0
+matplotlib>=3.4.0
+
