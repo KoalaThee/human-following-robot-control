@@ -1,0 +1,1 @@
+All models run on CPU within a Python 3.10 virtual environment. Dependencies are installed via pip and models are imported as needed.
